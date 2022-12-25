@@ -52,7 +52,7 @@ namespace ToDo.Repository
 
         public async Task<Tasks> GetTasksByTasksId(int id)
         {
-            Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.Id == id);
+            Tasks task = await _context.Tasks.FindAsync(id);
             if (task == null)
             {
                 throw new Exception("Não possuem registros com essa data");
