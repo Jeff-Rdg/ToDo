@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDo.Context.Map;
 using ToDo.Models;
 
 namespace ToDo.Context
@@ -11,5 +12,12 @@ namespace ToDo.Context
         }
 
         public DbSet<Tasks> Tasks { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TasksMap());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
