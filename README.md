@@ -13,7 +13,8 @@ A sua aplicação deverá ser do tipo Web API ou MVC, fique a vontade para imple
 
 A sua classe principal, a classe de tarefa, deve ser a seguinte:
 
-![Diagrama da classe Tarefa](diagrama.png)
+![diagrama](https://user-images.githubusercontent.com/81495438/209479435-4e9152fa-b6d9-4dfc-9df5-46a69a839b09.png)
+
 
 Não se esqueça de gerar a sua migration para atualização no banco de dados.
 
@@ -24,7 +25,8 @@ Não se esqueça de gerar a sua migration para atualização no banco de dados.
 **Swagger**
 
 
-![Métodos Swagger](swagger.png)
+
+![swagger](https://user-images.githubusercontent.com/81495438/209479430-a6b377a2-3e29-4dd3-86fd-65a38f63d7d5.png)
 
 
 **Endpoints**
