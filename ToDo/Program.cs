@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using ToDo.Context;
+using ToDo.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ToDoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
