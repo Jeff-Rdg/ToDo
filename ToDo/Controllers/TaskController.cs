@@ -16,6 +16,18 @@ namespace ToDo.Controllers
             _taskRepository = taskRepository;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateTask(Tasks task)
+        {
+            if (task.DateTask == DateTime.MinValue)
+            {
+                return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
+            }
+            await _taskRepository.CreateTasks(task);
+            return CreatedAtAction(nameof(GetTaskById), new { id = task.Id }, task);
+
+        }
+
         [HttpGet("ObterTodos")]
         public async Task<IActionResult> GetTasks()
         {
@@ -27,7 +39,7 @@ namespace ToDo.Controllers
         public async Task<IActionResult> GetTaskById(int id)
         {
             var task = await _taskRepository.GetTasksByTasksId(id);
-            if(task == null)
+            if (task == null)
             {
                 return NotFound("Tarefa não encontrada");
             }
