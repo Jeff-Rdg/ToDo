@@ -54,3 +54,6 @@ Esse é o schema (model) de Tarefa, utilizado para passar para os métodos que e
   "status": "Pendente"
 }
 ```
+
+Resolução:
+Foi utilizado Repository Pattern na persistencia dos dados com o Banco, utilizando os Principios SOLID.
