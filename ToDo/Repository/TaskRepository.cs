@@ -18,9 +18,9 @@ namespace ToDo.Repository
 
         public async Task<Tasks> CreateTasks(Tasks task)
         {
-            await _context.Tasks.AddAsync(task);
-            await _context.SaveChangesAsync();
-            return task;
+                await _context.Tasks.AddAsync(task);
+                await _context.SaveChangesAsync();
+                return task;
         }
 
         public async Task<IEnumerable<Tasks>> GetAllTasks()
@@ -28,14 +28,15 @@ namespace ToDo.Repository
             var tasks = await _context.Tasks.ToListAsync();
             return tasks;
         }
+        public async Task<Tasks> GetTasksByTasksId(int id)
+        {
+            Tasks task = await _context.Tasks.FindAsync(id);
+            return task;
+        }
 
         public async Task<Tasks> GetTasksByDate(DateTime date)
         {
             Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.DateTask.Date == date.Date);
-            if (task == null)
-            {
-                throw new Exception("Não possuem registros com essa data");
-            }
             return task;
 
         }
@@ -43,37 +44,20 @@ namespace ToDo.Repository
         public async Task<Tasks> GetTasksByStatus(EnumStatusTasks status)
         {
             Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.Status == status);
-            if (task == null)
-            {
-                throw new Exception("Não possuem registros com essa data");
-            }
             return task;
         }
 
-        public async Task<Tasks> GetTasksByTasksId(int id)
-        {
-            Tasks task = await _context.Tasks.FindAsync(id);
-            if (task == null)
-            {
-                throw new Exception("Não possuem registros com essa data");
-            }
-            return task;
-        }
 
         public async Task<Tasks> GetTasksByTitle(string title)
         {
             Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.Title == title);
-            if (task == null)
-            {
-                throw new Exception("Não possuem registros com essa data");
-            }
             return task;
         }
 
         public async Task<Tasks> UpdateTask(Tasks task, int id)
         {
             Tasks taskId = await GetTasksByTasksId(id);
-            if(taskId == null)
+            if (taskId == null)
             {
                 throw new Exception("Não existem registros com esse Id");
             }
