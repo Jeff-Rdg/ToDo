@@ -91,5 +91,14 @@ namespace ToDo.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateTask(Tasks task, int id)
+        {
+            if (task.DateTask == DateTime.MinValue)
+                return BadRequest(new { Erro = "A data da tarefa não pode ser vazia" });
+            var update = await _taskRepository.UpdateTask(task, id);
+            return Ok(update);
+        }
+
     }
 }
