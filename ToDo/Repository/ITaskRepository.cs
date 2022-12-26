@@ -7,9 +7,9 @@ namespace ToDo.Repository
         Task<Tasks> CreateTasks(Tasks task);
         Task<IEnumerable<Tasks>> GetAllTasks();
         Task<Tasks> GetTasksByTasksId(int id);
-        Task<Tasks> GetTasksByTitle(string title);
-        Task<Tasks> GetTasksByDate(DateTime date);
-        Task<Tasks> GetTasksByStatus(EnumStatusTasks status);
+        Task<IEnumerable<Tasks>> GetTasksByTitle(string title);
+        Task<IEnumerable<Tasks>> GetTasksByDate(DateTime date);
+        Task<IEnumerable<Tasks>> GetTasksByStatus(EnumStatusTasks status);
         Task<Tasks> UpdateTask(Tasks task, int id);
         Task<bool> DeleteTask(int id);
 

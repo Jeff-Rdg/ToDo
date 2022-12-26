@@ -34,23 +34,23 @@ namespace ToDo.Repository
             return task;
         }
 
-        public async Task<Tasks> GetTasksByDate(DateTime date)
+        public async Task<IEnumerable<Tasks>> GetTasksByDate(DateTime date)
         {
-            Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.DateTask.Date == date.Date);
-            return task;
+            var tasks = await _context.Tasks.Where(x => x.DateTask.Date == date.Date).ToListAsync();
+            return tasks;
 
         }
 
-        public async Task<Tasks> GetTasksByStatus(EnumStatusTasks status)
+        public async Task<IEnumerable<Tasks>> GetTasksByStatus(EnumStatusTasks status)
         {
-            Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.Status == status);
-            return task;
+            var tasks = await _context.Tasks.Where(x => x.Status == status).ToListAsync();
+            return tasks;
         }
 
 
-        public async Task<Tasks> GetTasksByTitle(string title)
+        public async Task<IEnumerable<Tasks>> GetTasksByTitle(string title)
         {
-            Tasks task = await _context.Tasks.FirstOrDefaultAsync(x => x.Title == title);
+            var task = await _context.Tasks.Where(x => x.Title.Contains(title)).ToListAsync();
             return task;
         }
 
