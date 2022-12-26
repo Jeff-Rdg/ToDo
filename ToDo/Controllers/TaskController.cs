@@ -51,5 +51,33 @@ namespace ToDo.Controllers
             }
         }
 
+        [HttpGet("ObterPorData")]
+        public async Task<IActionResult> GetTaskByDate(DateTime date)
+        {
+            var tasks = await _taskRepository.GetTasksByDate(date);
+            if (tasks == null)
+            {
+                return NotFound("Tarefa não encontrada");
+            }
+            else
+            {
+                return Ok(tasks);
+            }
+        }
+
+        [HttpGet("ObterPorStatus")]
+        public async Task<IActionResult> GetTaskByStatus(EnumStatusTasks status)
+        {
+            var tasks = await _taskRepository.GetTasksByStatus(status);
+            if (tasks == null)
+            {
+                return NotFound("Tarefa não encontrada");
+            }
+            else
+            {
+                return Ok(tasks);
+            }
+        }
+
     }
 }

@@ -30,7 +30,7 @@ namespace ToDo.Repository
         }
         public async Task<Tasks> GetTasksByTasksId(int id)
         {
-            Tasks task = await _context.Tasks.FindAsync(id);
+            var task = await _context.Tasks.FindAsync(id);
             return task;
         }
 
