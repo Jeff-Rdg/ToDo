@@ -100,5 +100,11 @@ namespace ToDo.Controllers
             return Ok(update);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(int id)
+        {
+            await _taskRepository.DeleteTask(id);
+            return NoContent();
+        }
     }
 }
